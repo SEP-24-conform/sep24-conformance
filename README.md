@@ -15,6 +15,22 @@ This repo has no dependency on either of them. It's a standalone library and
 CLI that happens to be useful on its own, and is also the shared core the
 other two are built on.
 
+```mermaid
+flowchart LR
+    subgraph This repo
+        Lib[sep24-conformance<br/>library + CLI]
+    end
+    Anchor[(Anchor under test)]
+    BE[sep24-conformance-backend]
+    Contract[sep24-attestation-registry<br/>Soroban contract]
+    FE[sep24-conformance-frontend]
+
+    Lib -->|GET stellar.toml, GET /info| Anchor
+    BE -->|installs as a normal npm dependency,<br/>runs runConformanceSuite| Lib
+    BE -->|on pass: attest domain, hash| Contract
+    FE -->|POST /api/checks, GET /api/registry| BE
+```
+
 ## Table of contents
 
 - [Why this exists](#why-this-exists)
