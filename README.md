@@ -164,15 +164,27 @@ from. Nothing is checked that isn't traceable to spec text — see
 
 ## Installation
 
-```sh
-npm install -g sep24-conformance
-```
-
-Or run it without installing:
+Not yet published to npm ([#2](https://github.com/SEP-24-conform/sep24-conformance/issues/2)).
+Run it without installing:
 
 ```sh
-npx sep24-conformance check testanchor.stellar.org
+npx github:SEP-24-conform/sep24-conformance check testanchor.stellar.org
 ```
+
+Or add it as a dependency in another project:
+
+```sh
+npm install github:SEP-24-conform/sep24-conformance
+```
+
+(`npm install -g sep24-conformance` and `npx sep24-conformance` — both
+previously shown here — resolve against the npm registry, where this
+package doesn't exist yet; confirmed via `npm view sep24-conformance`
+returning 404. `npm install -g` pointed at the git URL directly was also
+tried and found to fail for a different reason: its `prepare` build step
+can't find `tsc` during a global install specifically, unlike installing
+it as a project dependency or running it via `npx github:...`, both of
+which work correctly.)
 
 ## CLI usage
 
